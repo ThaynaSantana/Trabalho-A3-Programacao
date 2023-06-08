@@ -27,7 +27,7 @@ public class Automovel {
         return placa;
     }
 
-    public String getNome(){
+    public String getDono(){
         return nome_dono;
     }
 
@@ -43,15 +43,11 @@ public class Automovel {
         return dataHora_entrada;
     }
 
-    public String setDono(String nome_dono){
-        this.nome_dono = nome_dono;
+    public void setDataEntrada(LocalDateTime data_hora){
+        this.dataHora_entrada = data_hora;
     }
 
-    public boolean validarDono(String dono){
-        if(nome_dono == dono){
-            return true;
-        } else {
-            return false;
-        }
+    public void setDataSaida(LocalDateTime data_hora){
+        this.dataHora_saida = data_hora;
     }
 }
