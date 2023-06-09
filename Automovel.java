@@ -5,18 +5,22 @@ public class Automovel {
     private String placa;
     private String nome_dono;
     private String cor;
-    private Automovel tipo;
+    private int tamanho;
     private LocalDateTime dataHora_entrada;
     private LocalDateTime dataHora_saida;
 
-    public void Automovel(String modelo, String placa, String nome_dono, String cor, Automovel tipo){
+    public Automovel(String modelo, String placa, String nome_dono, String cor){
         this.modelo = modelo; // marca e modelo do veiculocarro
         this.placa = placa; // placa do veiculo
         this.nome_dono = nome_dono; // nome do dono do veiculo
         this.cor = cor; // cor do veiculo
-        this.tipo = tipo; // tipo de veiculos: carro ou moto.....
-        dataHora_entrada = null; // pegar o horario da hora que o veiculo entrar no estacionamento
+        tamanho = 0; 
+        dataHora_entrada = null; // horario de entrada como null porque nao foi estacionado o veiculo ainda
         dataHora_saida = null; // horario de saida como null porque nao foi retirado o veiculo ainda
+    }
+
+    public String getDescricao(){
+        return modelo + " | " + placa + " | " + nome_dono;
     }
 
     public String getModelo(){
@@ -35,9 +39,10 @@ public class Automovel {
         return cor;
     }
 
-    public Automovel getTipo(){
-        return tipo;
+    public int getTamanho(){
+        return tamanho;
     }
+
 
     public LocalDateTime getDataEntrada(){
         return dataHora_entrada;

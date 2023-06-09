@@ -6,15 +6,15 @@ public class Estacionamento {
         
         Scanner scan = new Scanner(System.in); // Declarando o Scanner
         ArrayList<Automovel> automoveis; // Array que guarda os automoveis estacionados
-        LocalDateTime data_hora_entrada;
-        LocalDateTime data_hora_saida;
+        LocalDateTime data_hora_entrada; // Variavel que guarda a data e hora de entrada no estacionamento
+        LocalDateTime data_hora_saida; // Variavel que guarda a data e hora de entrada no estacionamento
 
-        public void Estacionamento(){
-            // Cria um array de carros
+        public Estacionamento(){
+            // Cria um array com somente 40 vagas;
+            ArrayList<Automovel> automoveis = new ArrayList<Automovel>(40);
             System.out.println("Estacionamento Criado com sucesso!");
             System.out.println("Vagas disponiveis!");
         }
-
 
         public void Estacionar(Automovel veiculo){
             System.out.println("# Estacionando veiculo...");
@@ -32,28 +32,32 @@ public class Estacionamento {
             
         }
 
-        public void Remover(Automovel veiculo){
+        public void Remover(){
             System.out.println("# Removendo o veiculo");
             
-            System.out.println("Digite o nome do dono do carro: ");
-            String nome_dono = scan.nextLine(); // scaneando o nome digitado
-
-            if(nome_dono == veiculo.getDono()){ // verificando se o nome digitado bate com o nome do dono do carro
-                data_hora_saida = LocalDateTime.now();
-                veiculo.setDataSaida(data_hora_saida);
-                System.out.println("Carro retirado com sucesso!");
-            } else {
-                System.out.println("Dono incorreto... veiculo não pode ser retirado!");
+            System.out.println("Digite a placa do carro: ");
+            String placa = scan.nextLine(); // scaneando a placa digitada
+            for(Automovel automovel : automoveis){
+                if(placa == automovel.getPlaca()){ // verificando se o nome digitado bate com o nome do dono do carro
+                    data_hora_saida = LocalDateTime.now();
+                    automovel.setDataSaida(data_hora_saida);
+                    System.out.println("Carro encontrado e retirado com sucesso!");
+                } 
             }
-
+            System.out.println("Placa incorreta... veiculo não pode ser retirado!");
         }
 
-        public void AlterarInfo(){
-            System.out.println("# Alterando as informações veiculo");
+        // Metodo que altera as informaçoes do veiculo no detran
+        public void AlterarInfo(Automovel veiculo){
+            System.out.println("# Rapaz para voce alterar as informações voce vai ter que ir no detran..\nporque os sistemas hoje em dia é tudo automatico.\n Mas eu vou te ajudar, voce vai indo reto aqui, ai na primeira esquina vira a direita e voce vai ver um predio amarelo ESCRITO DETRAN bem grande\n É lá viu, Abraços!");
+            System.out.println("*Andando até o detran...");
+            Detran.alterar();
         }
-
-        public Automovel Buscar(String placa){
+        // Metodo que busca o veiculo pela placa e imprime na tela o veiculo
+        public Automovel Buscar(){
             System.out.println("# Buscando o veiculo..");
+            System.out.print("Insira a placa do carro: ");
+            String placa = scan.nextLine();
             for (Automovel automovel : automoveis) {
                 if (automovel.getPlaca().equalsIgnoreCase(placa)) {
                     return automovel;
@@ -61,5 +65,13 @@ public class Estacionamento {
              }
             System.out.println(placa+ "não encontrada");
             return null;
+        }
+
+        public void mostrarTodos(){
+            System.out.println("Modelo | Placa | Nome dono");
+            for (Automovel automovel : automoveis) {
+            String[] info = automovel.getDescricao().split(" \\| ");
+            System.out.println(info[0] + " | " + info[1] + " | " + info[2]);
+            }
         }
 }

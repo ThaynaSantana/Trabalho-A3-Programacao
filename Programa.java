@@ -14,23 +14,31 @@ public class Programa{
         System.out.println("[2] - Deseja visualizar todos os carros já estacionados?");
         System.out.println("[3] - Deseja remover um carro do estacionamento?");
         System.out.println("[4] - Deseja procurar por um carro?");
+        System.out.println("[5] - Deseja ir ao DETRAN?");
         System.out.println("[0] - Fechar programa");
         int option = scan.nextInt();
 
         switch (option){
             case 1:
-                GH_carros.estacionar(thayna);
+                GH_carros.Estacionar(thayna);
                 break;
             case 2:
-                GH_carros.mostrarTodosCarros();
+                GH_carros.mostrarTodos();
                 break;
             case 3:
-                GH_carros.remover(Automovel veiculo);
+                GH_carros.Remover();
                 break;
             case 4:
-                GH_carros.buscar(String dono);
+                GH_carros.Buscar();
                 break;
             case 5:
+                System.out.println("=====DETRAN====");
+                System.out.println("[1] - Deseja Cadastrar um carro?");
+                System.out.println("[2] - Deseja Cadastrar uma moto?");
+                System.out.println("[3] - Deseja apagar um veiculo?");
+                System.out.println("[4] - Deseja procurar por um veiculo?");
+                System.out.println("[0] - Voltar");
+            case 0:
                 System.out.println("Sistema Finalizado.");
                 break;
         }
