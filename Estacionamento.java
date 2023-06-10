@@ -18,20 +18,20 @@ public class Estacionamento {
             System.out.println("Vagas disponiveis!");
         }
 
-        public void Estacionar(Automovel veiculo){
+        public void Estacionar(){
             System.out.println("# Estacionando veiculo...");
             
             System.out.print("Digite o nome do dono do carro: ");
-            String nome_dono = scan.nextLine(); // scaneando o nome digitado
-            
-            if(nome_dono == veiculo.getDono()){ // verificando se o nome digitado bate com o nome do dono do carro
-                data_hora_entrada = LocalDateTime.now();
-                veiculo.setDataEntrada(data_hora_entrada);
-                System.out.println("Carro estacionado com sucesso!");
-            } else {
-                System.out.println("Dono incorreto... veiculo não pode ser estacionado!");
+            String nome_dono = scan.nextLine(); // Scaneando o nome digitado
+            for(Automovel automovel : automoveis){
+                if(nome_dono == automovel.getDono()){ // verificando se o nome digitado bate com o nome do dono do carro
+                    data_hora_entrada = LocalDateTime.now();
+                    automovel.setDataEntrada(data_hora_entrada);
+                    System.out.println("Carro estacionado com sucesso!");
+                } else {
+                    System.out.println("Dono incorreto... veiculo não pode ser estacionado!");
+                }
             }
-            
         }
 
         public void Remover(){

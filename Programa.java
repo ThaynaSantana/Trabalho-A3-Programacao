@@ -4,7 +4,7 @@ public class Programa{
     public static void main(String args[]){
         Scanner scan = new Scanner(System.in); // Declarando o Scanner
         Estacionamento GH_carros = new Estacionamento(); // Criando um estacionamento 
-
+        Detran detran = new Detran();  // Criando o detran
         Carro thayna = new Carro("Fiesta 2010", "123", "Thayna", "Preto");
 
         System.out.println("#############");
@@ -20,7 +20,7 @@ public class Programa{
 
         switch (option){
             case 1:
-                GH_carros.Estacionar(thayna);
+                GH_carros.Estacionar();
                 break;
             case 2:
                 GH_carros.mostrarTodos();
@@ -41,6 +41,8 @@ public class Programa{
                 int option_detran = scan.nextInt();
                 switch(option_detran){
                     case 1:
+                        detran.Cadastrar();
+                    case 2:
                 }
             case 0:
                 System.out.println("Sistema Finalizado.");

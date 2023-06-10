@@ -15,7 +15,18 @@ public class Detran {
         ArrayList<Automovel> automoveis;
     }
 
-    public void Cadastrar(String modelo, String placa, String nome_dono, String cor, String tipo){
+    public void Cadastrar(){
+        System.out.println("# Cadastrando o veiculo");
+        System.out.print("Digite o modelo: ");
+        modelo = scan.nextLine();
+        System.out.print("Digite a placa: ");
+        placa = scan.nextLine();
+        System.out.print("Digite o nome do dono: ");
+        nome_dono = scan.nextLine();
+        System.out.print("Digite o cor: ");
+        cor = scan.nextLine();
+        System.out.print("Que tipo de veiculo é? (Carro ou Moto?): ");
+        tipo = scan.nextLine();
         // Validação de todos os campos
         if (modelo == null || placa == null || nome_dono == null || cor == null || tipo == null){
             System.out.println("ERROR: Preencha todos os campos para cadastrar o veiculo no detran");
@@ -77,6 +88,6 @@ public class Detran {
     }
 
     public void Apagar(){
-        
+
     }
 }
