@@ -8,10 +8,12 @@ public class Estacionamento {
         ArrayList<Automovel> automoveis; // Array que guarda os automoveis estacionados
         LocalDateTime data_hora_entrada; // Variavel que guarda a data e hora de entrada no estacionamento
         LocalDateTime data_hora_saida; // Variavel que guarda a data e hora de entrada no estacionamento
+        Detran detran = new Detran(); // Instanciando o objeto Detran
+
 
         public Estacionamento(){
-            // Cria um array com somente 40 vagas;
-            ArrayList<Automovel> automoveis = new ArrayList<Automovel>(40);
+            // Cria um array com somente 10 vagas;
+            ArrayList<Automovel> automoveis = new ArrayList<Automovel>(10);
             System.out.println("Estacionamento Criado com sucesso!");
             System.out.println("Vagas disponiveis!");
         }
@@ -51,8 +53,9 @@ public class Estacionamento {
         public void AlterarInfo(Automovel veiculo){
             System.out.println("# Rapaz para voce alterar as informações voce vai ter que ir no detran..\nporque os sistemas hoje em dia é tudo automatico.\n Mas eu vou te ajudar, voce vai indo reto aqui, ai na primeira esquina vira a direita e voce vai ver um predio amarelo ESCRITO DETRAN bem grande\n É lá viu, Abraços!");
             System.out.println("*Andando até o detran...");
-            Detran.alterar();
+            detran.Alterar();
         }
+
         // Metodo que busca o veiculo pela placa e imprime na tela o veiculo
         public Automovel Buscar(){
             System.out.println("# Buscando o veiculo..");

@@ -48,6 +48,20 @@ public class Automovel {
         return dataHora_entrada;
     }
 
+    public void setModelo(String novo_modelo){
+        modelo = novo_modelo;
+    }
+
+    public void setPlaca(String nova_placa){
+        placa = nova_placa;
+    }
+    public void setCor(String nova_cor){
+        cor = nova_cor;
+    }
+    public void setNome(String novo_nome){
+        nome_dono = novo_nome;
+    }
+
     public void setDataEntrada(LocalDateTime data_hora){
         this.dataHora_entrada = data_hora;
     }

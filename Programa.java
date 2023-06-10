@@ -38,6 +38,10 @@ public class Programa{
                 System.out.println("[3] - Deseja apagar um veiculo?");
                 System.out.println("[4] - Deseja procurar por um veiculo?");
                 System.out.println("[0] - Voltar");
+                int option_detran = scan.nextInt();
+                switch(option_detran){
+                    case 1:
+                }
             case 0:
                 System.out.println("Sistema Finalizado.");
                 break;

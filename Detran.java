@@ -20,6 +20,7 @@ public class Detran {
         if (modelo == null || placa == null || nome_dono == null || cor == null || tipo == null){
             System.out.println("ERROR: Preencha todos os campos para cadastrar o veiculo no detran");
         } else {
+            // Verificação se foi digitado um carro ou moto, so é validado esses dois tipos
             if("Carro".equalsIgnoreCase(tipo)){
                 Carro veiculo = new Carro(modelo, placa, nome_dono, cor);
                 automoveis.add(veiculo);
@@ -27,24 +28,55 @@ public class Detran {
                 Moto veiculo = new Moto(modelo, placa, nome_dono, cor);
                 automoveis.add(veiculo);
             } else {
-                System.out.println("ERROR: Tipo de veiculo não existe");
+                System.out.println("ERROR: Tipo de veiculo não existe.");
             }
         }
     }
 
     public void Alterar(){
-        System.out.println("Bom dia! voce quer alterar as informações do seu veiculo certo?");
+        System.out.println("Bom dia! voce quer alterar as informações do seu veiculo, certo?");
         System.out.println("(0) - NÃO\n (1) - SIM");
         int option = scan.nextInt();
+        // validação se foi digitado 1 ou 0
         while(option != 1 || option != 0){
             if(option == 0){
                 System.out.println("Voce andou até aqui para nada?! Ok Então bye bye");
             } else if(option == 1){
-                System.out.println("Informe o nome do dono do carro");
-                
+                System.out.print("Informe o nome do dono do carro: ");
+                nome_dono = scan.nextLine();
+                // buscando o veiculo pelo nome do dono
+                for(Automovel automovel : automoveis){
+                    if(nome_dono.equalsIgnoreCase(automovel.getDono())){
+                        // Achou o veiculo!
+                        System.out.println("Achei seu veiculo, agora vamos alterar e confirmar todos os dados.");
+                        System.out.print("Digite o modelo: ");
+                        modelo = scan.nextLine();
+                        System.out.print("Digite a placa: ");
+                        placa = scan.nextLine();
+                        System.out.print("Digite o nome do dono: ");
+                        nome_dono = scan.nextLine();
+                        System.out.print("Digite o cor: ");
+                        cor = scan.nextLine();
+                        // Validação se todos os campos foram preenchidos
+                        if (modelo == null || placa == null || nome_dono == null || cor == null || tipo == null){
+                             System.out.println("ERROR: Preencha todos os campos para editar o veiculo no Detran");
+                        } else {
+                            automovel.setModelo(modelo);
+                            automovel.setPlaca(placa);
+                            automovel.setNome(nome_dono);
+                            automovel.setCor(cor);
+                            System.out.println("Veiculo alterado com sucesso!");
+                        }
+                    }
+                }
+                System.out.println("Não foi possivel encontrar o veiculo...");
             } else {
                 System.out.println("Opcao incorreta, digite 0 ou 1");
             }
         }
+    }
+
+    public void Apagar(){
+        
     }
 }
