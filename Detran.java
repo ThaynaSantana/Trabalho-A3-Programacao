@@ -12,7 +12,7 @@ public class Detran {
     private Automovel veiculo;
 
     public Detran(){
-        ArrayList<Automovel> automoveis;
+        automoveis = new ArrayList<>();
     }
 
     public void Cadastrar(){
@@ -27,6 +27,7 @@ public class Detran {
         cor = scan.nextLine();
         System.out.print("Que tipo de veiculo é? (Carro ou Moto?): ");
         tipo = scan.nextLine();
+
         // Validação de todos os campos
         if (modelo == null || placa == null || nome_dono == null || cor == null || tipo == null){
             System.out.println("ERROR: Preencha todos os campos para cadastrar o veiculo no detran");
@@ -35,9 +36,11 @@ public class Detran {
             if("Carro".equalsIgnoreCase(tipo)){
                 Carro veiculo = new Carro(modelo, placa, nome_dono, cor);
                 automoveis.add(veiculo);
+                System.out.println("Carro cadastrada com sucesso!");
             } else if("Moto".equalsIgnoreCase(tipo)){
                 Moto veiculo = new Moto(modelo, placa, nome_dono, cor);
                 automoveis.add(veiculo);
+                System.out.println("Moto cadastrada com sucesso!");
             } else {
                 System.out.println("ERROR: Tipo de veiculo não existe.");
             }
