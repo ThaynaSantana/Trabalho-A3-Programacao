@@ -1,2 +1,2 @@
 # Trabalho-A3-Programacao
-## equipe: thayna, joao, diego, ismael e ana o caminhao vrum
+### equipe: Thayna, Joao, Diego, Ismael e Ana
