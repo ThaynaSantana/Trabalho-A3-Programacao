@@ -43,6 +43,14 @@ public class Automovel {
         return tamanho;
     }
 
+    public LocalDateTime getHoraEntrada(){
+        return dataHora_entrada;
+    }
+
+    public LocalDateTime getHoraSaida(){
+        return dataHora_saida;
+    }
+
 
     public LocalDateTime getDataEntrada(){
         return dataHora_entrada;
