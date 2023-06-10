@@ -33,8 +33,7 @@ public class Programa{
                 break;
             case 5:
                 System.out.println("=====DETRAN====");
-                System.out.println("[1] - Deseja Cadastrar um carro?");
-                System.out.println("[2] - Deseja Cadastrar uma moto?");
+                System.out.println("[1] - Deseja Cadastrar um veiculo?");
                 System.out.println("[3] - Deseja apagar um veiculo?");
                 System.out.println("[4] - Deseja procurar por um veiculo?");
                 System.out.println("[0] - Voltar");
@@ -42,8 +41,15 @@ public class Programa{
                 switch(option_detran){
                     case 1:
                         detran.Cadastrar();
+                        break;
                     case 2:
-                }
+                        detran.Apagar();
+                        break;
+                    case 3:
+                        detran.Buscar();
+                        break;
+                    case 0:
+                }   
             case 0:
                 System.out.println("Sistema Finalizado.");
                 break;

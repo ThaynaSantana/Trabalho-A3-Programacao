@@ -88,6 +88,25 @@ public class Detran {
     }
 
     public void Apagar(){
+        // Busca o veiculo
+        // E armazena na variavel veiculo o objeto veiculo
+        Automovel veiculo = Buscar();
+        // Remove do Array do Detran o veiculo!  
+        automoveis.remove(veiculo);
+        System.out.println("Veiculo apagado do Detran com sucesso");
 
+    }
+
+    public Automovel Buscar(){
+        System.out.println("# Buscando o veiculo..");
+        System.out.print("Insira a placa do carro: ");
+        String placa = scan.nextLine();
+        for (Automovel automovel : automoveis) {
+            if (automovel.getPlaca().equalsIgnoreCase(placa)) {
+                return automovel;
+            }
+        }
+        System.out.println(placa+ "não encontrada");
+        return null;
     }
 }
