@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.naming.directory.AttributeModificationException;
+
 public class Detran {
     Scanner scan = new Scanner(System.in);
     private ArrayList<Automovel> automoveis;
@@ -106,6 +108,8 @@ public class Detran {
         String placa = scan.nextLine();
         for (Automovel automovel : automoveis) {
             if (automovel.getPlaca().equalsIgnoreCase(placa)) {
+                System.out.println("Modelo | Placa | Dono | Cor|");
+                System.out.println(automovel.getModelo()+" | " + automovel.getPlaca() +" | "+ automovel.getDono()+ " | "+ automovel.getCor());
                 return automovel;
             }
         }

@@ -30,19 +30,14 @@ public class Programa{
                 GH_carros.Buscar();
                 break;
             case 5:
-                    System.out.println("=====DETRAN====");
-                    System.out.println("[1] - Deseja Cadastrar um veiculo?");
-                    System.out.println("[2] - Deseja apagar um veiculo?");
-                    System.out.println("[3] - Deseja procurar por um veiculo?");
-                    System.out.println("[0] - Voltar");
-                    int option_detran = scan.nextInt();
+                System.out.println("=====DETRAN====");
+                System.out.println("[1] - Deseja Cadastrar um veiculo?");
+                System.out.println("[2] - Deseja apagar um veiculo?");
+                System.out.println("[3] - Deseja procurar por um veiculo?");
+                System.out.println("[0] - Voltar");
+                int option_detran = scan.nextInt();
                 while(option_detran != 0){
-                    System.out.println("=====DETRAN====");
-                    System.out.println("[1] - Deseja Cadastrar um veiculo?");
-                    System.out.println("[2] - Deseja apagar um veiculo?");
-                    System.out.println("[3] - Deseja procurar por um veiculo?");
-                    System.out.println("[0] - Voltar");
-                    option_detran = scan.nextInt();
+                    
                     switch(option_detran){
                         case 1:
                             detran.Cadastrar();
@@ -54,7 +49,13 @@ public class Programa{
                             detran.Buscar();
                             break;
                         case 0:
-                    }       
+                    }
+                    System.out.println("=====DETRAN====");
+                    System.out.println("[1] - Deseja Cadastrar um veiculo?");
+                    System.out.println("[2] - Deseja apagar um veiculo?");
+                    System.out.println("[3] - Deseja procurar por um veiculo?");
+                    System.out.println("[0] - Voltar");
+                    option_detran = scan.nextInt();
                 }
                 
             case 0:
