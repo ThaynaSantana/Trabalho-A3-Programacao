@@ -16,12 +16,12 @@ public class Estacionamento {
             automoveis = new ArrayList<>(10);
             System.out.println("Estacionamento Criado com sucesso!");
             System.out.println("Vagas disponiveis!");
-
+            
         }
 
         public void Estacionar(){
             System.out.println("# Estacione o veiculo..");
-            System.out.print("Digite o nome do dono do carro: ");
+            System.out.println("Digite o nome do dono do carro: ");
             String nome_dono = scan.nextLine(); // Scaneando o nome digitado
             Automovel veiculo = detran.BuscaInterna(nome_dono); // Mostrando a hora e data de entrada e a descriçao do veiculo 
             if(veiculo != null){
@@ -31,7 +31,7 @@ public class Estacionamento {
                 automoveis.add(veiculo);
                 System.out.println("Carro estacionado com sucesso!");
             } else {
-                System.out.println("Dono incorreto... veiculo não pode ser estacionado!");
+                System.out.println("Nenhum carro foi encontrado com nome do dono fornecido... veiculo não pode ser estacionado!");
             }
         }
 
@@ -65,7 +65,7 @@ public class Estacionamento {
         
 
         // Metodo que altera as informaçoes do veiculo no detran
-        public void AlterarInfo(Automovel veiculo){
+        public void AlterarInfo(){
             System.out.println("# Rapaz para voce alterar as informações voce vai ter que ir no detran..\nporque os sistemas hoje em dia é tudo automatico.\n Mas eu vou te ajudar, voce vai indo reto aqui, ai na primeira esquina vira a direita e voce vai ver um predio amarelo ESCRITO DETRAN bem grande\n É lá viu, Abraços!");
             System.out.println("*Andando até o detran...");
             detran.Alterar();
@@ -78,6 +78,8 @@ public class Estacionamento {
             String placa = scan.nextLine();
             for (Automovel automovel : automoveis) {
                 if (automovel.getPlaca().equalsIgnoreCase(placa)) {
+                     System.out.println("Modelo | Placa | Dono | Cor|");
+                    System.out.println(automovel.getModelo()+" | " + automovel.getPlaca() +" | "+ automovel.getDono()+ " | "+ automovel.getCor());
                     return automovel;
                 }
              }
