@@ -1,38 +1,50 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Estacionamento {
         
         Scanner scan = new Scanner(System.in); // Declarando o Scanner
         ArrayList<Automovel> automoveis; // Array que guarda os automoveis estacionados
-        LocalDateTime data_hora_entrada; // Variavel que guarda a data e hora de entrada no estacionamento
-        LocalDateTime data_hora_saida; // Variavel que guarda a data e hora de entrada no estacionamento
+        LocalDateTime now;
+        String data_hora_entrada; // Variavel que guarda a data e hora de entrada no estacionamento
+        String data_hora_saida; // Variavel que guarda a data e hora de entrada no estacionamento
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("HH:mm:ss - dd/MM/yyyy "); // formatador de data e hora (12:30:02 13/06/2023)
         Detran detran = new Detran(); // Instanciando o objeto Detran
-
+        int vagas_disponiveis; // variavel que serve para fazer o controle de vagas disponivel
 
         public Estacionamento(){
             // Cria um array com somente 10 vagas;
             automoveis = new ArrayList<>(10);
-            System.out.println("Estacionamento Criado com sucesso!");
-            System.out.println("Vagas disponiveis!");
-            
+            vagas_disponiveis = 3;
+            System.out.println("Estacionamento criado com sucesso!");
+            System.out.println("Vagas disponíveis: " + vagas_disponiveis);
+        
         }
 
         public void Estacionar(){
-            System.out.println("# Estacione o veiculo..");
-            System.out.println("Digite o nome do dono do carro: ");
-            String nome_dono = scan.nextLine(); // Scaneando o nome digitado
-            Automovel veiculo = detran.BuscaInterna(nome_dono); // Mostrando a hora e data de entrada e a descriçao do veiculo 
-            if(veiculo != null){
-                data_hora_entrada = LocalDateTime.now(); // pegando a data de entrada no momento do veiculo no estacionamento
-                veiculo.setDataEntrada(data_hora_entrada); // setando o horario
-                System.out.println(data_hora_entrada+" - "+veiculo.getDescricao());
-                automoveis.add(veiculo);
-                System.out.println("Carro estacionado com sucesso!");
+            if(vagas_disponiveis == 0){
+               System.out.println("Não há vagas disponíveis no momento!");
             } else {
-                System.out.println("Nenhum carro foi encontrado com nome do dono fornecido... veiculo não pode ser estacionado!");
+                System.out.println("# Estacione o veiculo..");
+                System.out.println("Digite o nome do dono do carro: ");
+                String nome_dono = scan.nextLine(); // Scaneando o nome digitado
+                Automovel veiculo = detran.BuscaInterna(nome_dono); // Mostrando a hora e data de entrada e a descriçao do veiculo 
+                if(veiculo != null){
+                    now = LocalDateTime.now(); // pegando a data de entrada no momento do veiculo no estacionamento
+                    String data_hora_entrada = now.format(formater);
+                    veiculo.setDataEntrada(data_hora_entrada); // setando o horario
+                    System.out.println(data_hora_entrada+" - "+veiculo.getDescricao());
+                    automoveis.add(veiculo);
+                    System.out.println("Carro estacionado com sucesso!");
+                    vagas_disponiveis--; // decremetando 1, que significa -1 vaga disponivei ;)
+                } else {
+                    System.out.println("Nenhum carro foi encontrado com nome do dono fornecido... veiculo não pode ser estacionado!");
+                }
             }
+            
         }
 
         public void Remover(){
@@ -46,11 +58,13 @@ public class Estacionamento {
                 System.out.print("> ");
                 int opcao = scan.nextInt();
                 if(opcao == 1){
-                    data_hora_saida = LocalDateTime.now(); // Pegando a data e hora no momento
+                    now = LocalDateTime.now(); // pegando a data de entrada no momento do veiculo no estacionamento
+                    String data_hora_saida = now.format(formater); // Pegando a data e hora no momento
                     veiculo.setDataSaida(data_hora_saida); // Setando a data e hora de saida
                     automoveis.remove(veiculo); // Removendo o veiculo do array
                     System.out.println(data_hora_saida+" - "+veiculo.getDescricao()); // Mostrando a hora e data de saida e a descriçao do veiculo 
                     System.out.println("Carro retirado do estacionamento com sucesso!");
+                    vagas_disponiveis++; // incremetando 1, que significa 1+ vaga disponivel
                 } else if(opcao == 0){
                     System.out.println("Nenhum veiculo foi removido.");
                 } else {
@@ -61,7 +75,6 @@ public class Estacionamento {
             }
                 
         } 
-        
         
 
         // Metodo que altera as informaçoes do veiculo no detran
@@ -89,9 +102,9 @@ public class Estacionamento {
 
         public void mostrarTodos(){
             System.out.println("Modelo | Placa | Nome dono");
-            for (Automovel automovel : automoveis) {
-            String[] info = automovel.getDescricao().split(" \\| ");
-            System.out.println(info[0] + " | " + info[1] + " | " + info[2]);
+            for (Automovel automovel : Collections.sort(automoveis);) {
+                String[] info = automovel.getDescricao().split(" \\| ");
+                System.out.println(info[0] + " | " + info[1] + " | " + info[2]);
             }
         }
 }
