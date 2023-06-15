@@ -1,13 +1,8 @@
 import java.time.LocalDateTime;
 
 public class Automovel implements Comparable<Automovel> {
-    private String modelo;
-    private String placa;
-    private String nome_dono;
-    private String cor;
+    private String modelo, placa, nome_dono, cor, dataHora_entrada, dataHora_saida;
     private int tamanho;
-    private String dataHora_entrada;
-    private String dataHora_saida;
 
     public Automovel(String modelo, String placa, String nome_dono, String cor){
         this.modelo = modelo; // marca e modelo do veiculocarro

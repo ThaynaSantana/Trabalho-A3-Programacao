@@ -100,11 +100,28 @@ public class Estacionamento {
             return null;
         }
 
+        public static void ordenarPorNomeDono( ArrayList<Automovel> automoveis) {
+            // Colletions.sort() serve para ordenar um ArrayList
+            // Comparator é um objeto que serve para comparar dois objetos dentro do array
+            Collections.sort(automoveis, new Comparator<Automovel>() {
+                @Override
+                public int compare(Automovel obj1, Automovel obj2) {
+                    return obj1.getDono().compareTo(obj2.getDono()); // então aqui ele compara de fato dois objetos do tipo Automovel pelo atributo nome do dono
+                }
+                /* Como funciona o compare()
+                 *  Se obj1.getDono() for menor do que obj2.getDono(), o valor retornado será negativo.
+                    Se obj1.getDono() for maior do que obj2.getDono(), o valor retornado será positivo.
+                    Se obj1.getDono() for igual a obj2.getDono(), o valor retornado será zero.
+                 */
+            });
+        }
+
         public void mostrarTodos(){
             System.out.println("Modelo | Placa | Nome dono");
-            for (Automovel automovel : Collections.sort(automoveis);) {
-                String[] info = automovel.getDescricao().split(" \\| ");
-                System.out.println(info[0] + " | " + info[1] + " | " + info[2]);
+            for (Automovel automovel : automoveis) {
+                ordenarPorNomeDono(automoveis); // chamando o metodo para ordernar o array por ordem alfabetica pelo atributo nome
+                String[] info = automovel.getDescricao().split(" \\| "); // metodo getDescricao() retorna uma breve descricao do veiculo
+                System.out.println(info[0] + " | " + info[1] + " | " + info[2]); // printando as informações de forma tabular
             }
         }
 }

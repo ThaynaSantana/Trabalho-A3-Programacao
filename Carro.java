@@ -1,15 +1,8 @@
 import java.time.LocalDateTime;
 public class Carro extends Automovel {
     
-    private String modelo;
-    private String placa;
-    private String nome_dono;
-    private String cor;
-    private int tamanho;
-    private int cavalos;
-    private LocalDateTime dataHora_entrada;
-    private LocalDateTime dataHora_saida;
-    
+    private String modelo, placa, nome_dono, cor, dataHora_entrada, dataHora_saida;
+    private int tamanho, cavalos;
 
     public Carro(String modelo, String placa, String nome_dono, String cor){
         super(modelo, placa, nome_dono, cor);
