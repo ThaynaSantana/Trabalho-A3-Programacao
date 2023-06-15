@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 public class Estacionamento {
         
         Scanner scan = new Scanner(System.in); // Declarando o Scanner
-        ArrayList<Automovel> automoveis; // Array que guarda os automoveis estacionados
+        ArrayList<Veiculo> veiculos; // Array que guarda os veiculos estacionados
         LocalDateTime now;
         String data_hora_entrada; // Variavel que guarda a data e hora de entrada no estacionamento
         String data_hora_saida; // Variavel que guarda a data e hora de entrada no estacionamento
@@ -17,7 +17,7 @@ public class Estacionamento {
 
         public Estacionamento(){
             // Cria um array com somente 10 vagas;
-            automoveis = new ArrayList<>(10);
+            veiculos = new ArrayList<>(10);
             vagas_disponiveis = 3;
             System.out.println("Estacionamento criado com sucesso!");
             System.out.println("Vagas disponíveis: " + vagas_disponiveis);
@@ -31,13 +31,13 @@ public class Estacionamento {
                 System.out.println("# Estacione o veiculo..");
                 System.out.println("Digite o nome do dono do carro: ");
                 String nome_dono = scan.nextLine(); // Scaneando o nome digitado
-                Automovel veiculo = detran.BuscaInterna(nome_dono); // Mostrando a hora e data de entrada e a descriçao do veiculo 
+                Veiculo veiculo = detran.BuscaInterna(nome_dono); // Mostrando a hora e data de entrada e a descriçao do veiculo 
                 if(veiculo != null){
                     now = LocalDateTime.now(); // pegando a data de entrada no momento do veiculo no estacionamento
                     String data_hora_entrada = now.format(formater);
                     veiculo.setDataEntrada(data_hora_entrada); // setando o horario
                     System.out.println(data_hora_entrada+" - "+veiculo.getDescricao());
-                    automoveis.add(veiculo);
+                    veiculos.add(veiculo);
                     System.out.println("Carro estacionado com sucesso!");
                     vagas_disponiveis--; // decremetando 1, que significa -1 vaga disponivei ;)
                 } else {
@@ -51,7 +51,7 @@ public class Estacionamento {
             System.out.println("# Removendo o veiculo..");
             System.out.println("Digite o nome do dono do carro: ");
             String nome_dono = scan.nextLine(); // scaneando a placa digitada
-            Automovel veiculo = detran.BuscaInterna(nome_dono); // Buscando o veiculo pelo nome digitado 
+            Veiculo veiculo = detran.BuscaInterna(nome_dono); // Buscando o veiculo pelo nome digitado 
             if(veiculo != null){
                 System.out.println("Tem certeza que deseja remover o veiculo abaixo? (0- Não) (1 - Sim)");
                 System.out.println(veiculo.getDescricao());
@@ -61,7 +61,7 @@ public class Estacionamento {
                     now = LocalDateTime.now(); // pegando a data de entrada no momento do veiculo no estacionamento
                     String data_hora_saida = now.format(formater); // Pegando a data e hora no momento
                     veiculo.setDataSaida(data_hora_saida); // Setando a data e hora de saida
-                    automoveis.remove(veiculo); // Removendo o veiculo do array
+                    veiculos.remove(veiculo); // Removendo o veiculo do array
                     System.out.println(data_hora_saida+" - "+veiculo.getDescricao()); // Mostrando a hora e data de saida e a descriçao do veiculo 
                     System.out.println("Carro retirado do estacionamento com sucesso!");
                     vagas_disponiveis++; // incremetando 1, que significa 1+ vaga disponivel
@@ -85,28 +85,28 @@ public class Estacionamento {
         }
 
         // Metodo que busca o veiculo pela placa e imprime na tela o veiculo
-        public Automovel Buscar(){
+        public Veiculo Buscar(){
             System.out.println("# Buscando o veiculo..");
             System.out.print("Insira a placa do carro: ");
             String placa = scan.nextLine();
-            for (Automovel automovel : automoveis) {
-                if (automovel.getPlaca().equalsIgnoreCase(placa)) {
+            for (Veiculo veiculo : veiculos) {
+                if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
                      System.out.println("Modelo | Placa | Dono | Cor|");
-                    System.out.println(automovel.getModelo()+" | " + automovel.getPlaca() +" | "+ automovel.getDono()+ " | "+ automovel.getCor());
-                    return automovel;
+                    System.out.println(veiculo.getModelo()+" | " + veiculo.getPlaca() +" | "+ veiculo.getDono()+ " | "+ veiculo.getCor());
+                    return veiculo;
                 }
              }
             System.out.println(placa+ "não encontrada");
             return null;
         }
 
-        public static void ordenarPorNomeDono( ArrayList<Automovel> automoveis) {
+        public static void ordenarPorNomeDono( ArrayList<Veiculo> veiculos) {
             // Colletions.sort() serve para ordenar um ArrayList
             // Comparator é um objeto que serve para comparar dois objetos dentro do array
-            Collections.sort(automoveis, new Comparator<Automovel>() {
+            Collections.sort(veiculos, new Comparator<Veiculo>() {
                 @Override
-                public int compare(Automovel obj1, Automovel obj2) {
-                    return obj1.getDono().compareTo(obj2.getDono()); // então aqui ele compara de fato dois objetos do tipo Automovel pelo atributo nome do dono
+                public int compare(Veiculo obj1, Veiculo obj2) {
+                    return obj1.getDono().compareTo(obj2.getDono()); // então aqui ele compara de fato dois objetos do tipo Veiculo pelo atributo nome do dono
                 }
                 /* Como funciona o compare()
                  *  Se obj1.getDono() for menor do que obj2.getDono(), o valor retornado será negativo.
@@ -118,9 +118,9 @@ public class Estacionamento {
 
         public void mostrarTodos(){
             System.out.println("Modelo | Placa | Nome dono");
-            for (Automovel automovel : automoveis) {
-                ordenarPorNomeDono(automoveis); // chamando o metodo para ordernar o array por ordem alfabetica pelo atributo nome
-                String[] info = automovel.getDescricao().split(" \\| "); // metodo getDescricao() retorna uma breve descricao do veiculo
+            for (Veiculo veiculo : veiculos) {
+                ordenarPorNomeDono(veiculos); // chamando o metodo para ordernar o array por ordem alfabetica pelo atributo nome
+                String[] info = veiculo.getDescricao().split(" \\| "); // metodo getDescricao() retorna uma breve descricao do veiculo
                 System.out.println(info[0] + " | " + info[1] + " | " + info[2]); // printando as informações de forma tabular
             }
         }

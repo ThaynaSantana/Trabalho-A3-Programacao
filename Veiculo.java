@@ -1,10 +1,10 @@
 import java.time.LocalDateTime;
 
-public class Automovel implements Comparable<Automovel> {
+public class Veiculo implements Comparable<Veiculo> {
     private String modelo, placa, nome_dono, cor, dataHora_entrada, dataHora_saida;
     private int tamanho;
 
-    public Automovel(String modelo, String placa, String nome_dono, String cor){
+    public Veiculo(String modelo, String placa, String nome_dono, String cor){
         this.modelo = modelo; // marca e modelo do veiculocarro
         this.placa = placa; // placa do veiculo
         this.nome_dono = nome_dono; // nome do dono do veiculo
@@ -14,7 +14,7 @@ public class Automovel implements Comparable<Automovel> {
         dataHora_saida = null; // horario de saida como null porque nao foi retirado o veiculo ainda
     }
 
-    public int compareTo(Automovel outro) {
+    public int compareTo(Veiculo outro) {
         return this.nome_dono.compareTo(outro.nome_dono);
     }
 

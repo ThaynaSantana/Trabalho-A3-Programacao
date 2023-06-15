@@ -17,6 +17,7 @@ public class Programa{
         System.out.println("[0] - Fechar programa");
         System.out.print("> ");
         int option = scan.nextInt();
+        
         while(option != 0){
             switch (option){
                 case 1:
@@ -54,10 +55,9 @@ public class Programa{
                             case 4:
                                 detran.MostrarTodos();
                                 break;
-                            case 0: // comentario para ismael o amigo e ana O caminhão:
-                                    // Recado de Thayna <3
-                                    // - Façam esse campo aqui retornar o menu em um loop 
-                                    // porfavorzinho... com Amor Thayna<3
+                            case 0:
+                                scan.close();
+                                break;
                         }
                         System.out.println("=====DETRAN====");
                         System.out.println("[1] - Deseja Cadastrar um veiculo?");
@@ -74,6 +74,7 @@ public class Programa{
                     break;
                 case 0:
                     System.out.println("Sistema Finalizado.");
+                    scan.close();
                     break;
             }
             System.out.println("=====MENU=====");
