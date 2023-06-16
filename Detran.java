@@ -3,30 +3,30 @@ import java.util.Scanner;
 
 public class Detran {
     Scanner scan = new Scanner(System.in);
-    private ArrayList<Automovel> automoveis;
+    private ArrayList<Veiculo> veiculos;
     private String modelo;
     private String placa;
     private String nome_dono;
     private String cor;
     private String tipo;
-    private Automovel veiculo;
+    private Veiculo veiculo;
     // Metodo Construtor
     public Detran(){
-        automoveis = new ArrayList<>(); 
+        veiculos = new ArrayList<>(); 
         Carro joaop = new Carro("Amarok", "P0rt3", "Joao", "Preto"); // #1
         Carro ana = new Carro("Fusca", "1345", "Ana Verena", "Verde Cana"); // #2
         Moto thayna = new Moto("Honda XRE 300", "Goku", "Thayna", "Ciano"); // #3
         Moto ismael = new Moto("Honda CB 500x", "BUG", "ismael", "Preto"); // #4
-        Moto well = new Moto("Bonneville Bobber", "JAVA", "Welignton", "Cinza com chamas"); // #5
+        Moto well = new Moto("Bonneville Bobber", "JAVA", "Wellington", "Cinza com chamas"); // #5
         Carro jorge = new Carro("Camaro", "FOR", "Jorge", "Amarelo"); // #6
         Carro diego = new Carro("Golf", "M4r0mb4", "Diego", "Cinza"); // #7
-        automoveis.add(joaop);
-        automoveis.add(ana);
-        automoveis.add(thayna);
-        automoveis.add(ismael);
-        automoveis.add(well);
-        automoveis.add(jorge);
-        automoveis.add(diego); // Adicionado os objetos motos e carros ao Array do Detran
+        veiculos.add(joaop);
+        veiculos.add(ana);
+        veiculos.add(thayna);
+        veiculos.add(ismael);
+        veiculos.add(well);
+        veiculos.add(jorge);
+        veiculos.add(diego); // Adicionado os objetos motos e carros ao Array do Detran
     }
     // Metodo que cadastra o veiculo para o Usuario
     public void Cadastrar(){
@@ -49,11 +49,11 @@ public class Detran {
             // Verificação se foi digitado um carro ou moto, so é validado esses dois tipos
             if("Carro".equalsIgnoreCase(tipo)){
                 Carro veiculo = new Carro(modelo, placa, nome_dono, cor);
-                automoveis.add(veiculo);
+                veiculos.add(veiculo);
                 System.out.println("Carro cadastrada com sucesso!");
             } else if("Moto".equalsIgnoreCase(tipo)){
                 Moto veiculo = new Moto(modelo, placa, nome_dono, cor);
-                automoveis.add(veiculo);
+                veiculos.add(veiculo);
                 System.out.println("Moto cadastrada com sucesso!");
             } else {
                 System.out.println("ERROR: Tipo de veiculo não existe.");
@@ -65,13 +65,14 @@ public class Detran {
         System.out.println("Bom dia! voce quer alterar as informações do seu veiculo, certo?");
         System.out.println("(0) - NÃO (1) - SIM");
         int option = scan.nextInt();
+        scan.nextLine();
         if(option == 0){
             System.out.println("Voce andou até aqui para nada?! Ok Então bye bye");
         } else if(option == 1){
-            System.out.print("Informe o nome do dono do carro: ");
+            System.out.println("Informe o nome do dono do carro: ");
             nome_dono = scan.nextLine();
             // buscando o veiculo pelo nome do dono
-             Automovel veiculo = BuscaInterna(nome_dono);
+            veiculo = BuscaInterna(nome_dono);
             if(veiculo != null){
                 // Achou o veiculo!
                 System.out.println("Achei seu veiculo, agora vamos alterar e confirmar todos os dados.");
@@ -84,7 +85,7 @@ public class Detran {
                 System.out.print("Digite o cor: ");
                 cor = scan.nextLine();
                 // Validação se todos os campos foram preenchidos
-                if (modelo == null || placa == null || nome_dono == null || cor == null || tipo == null){
+                if (modelo == null || placa == null || nome_dono == null || cor == null){
                         System.out.println("ERROR: Preencha todos os campos para editar o veiculo no Detran");
                 } else {
                     veiculo.setModelo(modelo);
@@ -105,24 +106,24 @@ public class Detran {
     public void Apagar(){
         // Busca o veiculo
         // E armazena na variavel veiculo o objeto veiculo
-        Automovel veiculo = Buscar();
+        Veiculo veiculo = Buscar();
         // Remove do Array do Detran o veiculo!  
-        automoveis.remove(veiculo);
+        veiculos.remove(veiculo);
         System.out.println("Veiculo apagado do Detran com sucesso");
 
     }
     // Metodo que busca o veiculo a partir da placa do carro para o Usuario
-    public Automovel Buscar(){
+    public Veiculo Buscar(){
         System.out.println("# Buscando o veiculo..");
         System.out.print("Insira a placa do carro: ");
         String placa = scan.nextLine();
         // for que percorre todo o array para encontrar o veiculo pela placa
-        for (Automovel automovel : automoveis) {
-            if (automovel.getPlaca().equalsIgnoreCase(placa)) {
+        for (Veiculo veiculo : veiculos) {
+            if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
                 // Imprimindo o veiculo encontrado de forma tabular os dados do veiculo
                 System.out.println("Modelo | Placa | Dono | Cor|");
-                System.out.println(automovel.getModelo()+" | " + automovel.getPlaca() +" | "+ automovel.getDono()+ " | "+ automovel.getCor());
-                return automovel;
+                System.out.println(veiculo.getModelo()+" | " + veiculo.getPlaca() +" | "+ veiculo.getDono()+ " | "+ veiculo.getCor());
+                return veiculo;
             }
         }
         System.out.println(placa+ "não encontrada");
@@ -133,17 +134,17 @@ public class Detran {
     public void MostrarTodos(){
         System.out.println("Lista de todos os carros cadastrados no Detran");
         System.out.println("Modelo | Placa | Dono | Cor|");
-        for(Automovel automovel : automoveis){
-            System.out.println(automovel.getModelo()+" | " + automovel.getPlaca() +" | "+ automovel.getDono()+ " | "+ automovel.getCor());
+        for(Veiculo veiculo : veiculos){
+            System.out.println(veiculo.getModelo()+" | " + veiculo.getPlaca() +" | "+ veiculo.getDono()+ " | "+ veiculo.getCor());
         }
     }
 
     // Metodo BuscaInterna é para o proprio sistema saber o veiculo cadastrado no Detran
-    public Automovel BuscaInterna(String nome_dono){
-        for (Automovel automovel : automoveis) {
-            if (automovel.getDono().equalsIgnoreCase(nome_dono)) {
+    public Veiculo BuscaInterna(String nome_dono){
+        for (Veiculo veiculo : veiculos) {
+            if (veiculo.getDono().equalsIgnoreCase(nome_dono)) {
                 // Imprimindo o veiculo encontrado de forma tabular os dados do veiculo
-                return automovel;
+                return veiculo;
             }
         }
         return null;

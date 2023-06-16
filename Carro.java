@@ -1,5 +1,4 @@
-import java.time.LocalDateTime;
-public class Carro extends Automovel {
+public class Carro extends Veiculo {
     
     private String modelo, placa, nome_dono, cor, dataHora_entrada, dataHora_saida;
     private int tamanho, cavalos;
